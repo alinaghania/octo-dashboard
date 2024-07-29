@@ -366,7 +366,6 @@ def display_profile():
     - Painting/Drawing
 
     ### Contact Information
-    - **Phone**: 07 79 56 62 89
     - **LinkedIn**: [Sabine Dawaliby](https://www.linkedin.com/in/sabinedawaliby)
     - **Email**: sabinedawaliby@gmail.com
     - **Driver's license**: B
