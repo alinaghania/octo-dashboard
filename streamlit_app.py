@@ -281,7 +281,7 @@ def display_profile():
 # Create a Streamlit app with navigation
 page = st.selectbox(
     "Navigation",
-    ["OCTO", "Certifications", "Profile", "Locations"]
+    ["OCTO", "Locations", "Certifications", "Profile"]
 )
 
 # Call the appropriate function based on the selected page
