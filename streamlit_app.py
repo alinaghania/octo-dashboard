@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import folium
 from streamlit.components.v1 import html
+import os
 
 # Configuration de l'apparence de Streamlit avec un fond noir
 st.markdown(
@@ -188,19 +189,23 @@ def display_certifications():
     ### Microsoft Azure Fundamentals AZ900
     This certification demonstrates foundational level knowledge of cloud services and how those services are provided with Microsoft Azure. It covers general cloud computing concepts as well as services such as Azure subscriptions, planning and management, and Azure pricing and support. [Learn more](https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/)
     """)
-    st.image("/workspaces/octo-dashboard/AZ900.png", width=300)
+    image = "/workspaces/octo-dashboard/AZ900.png"
+    if os.path.exists(image):
+     st.image("/workspaces/octo-dashboard/AZ900.png", width=300)
+    else:
+     st.error(f"Profile image not found: {image}")
     
     st.markdown("""
     ### Microsoft Azure AI Fundamentals AI900
     This certification is an opportunity to demonstrate knowledge of common AI and machine learning workloads and how to implement them on Azure. It covers AI considerations, fundamental principles of machine learning on Azure, and features of computer vision workloads on Azure. [Learn more](https://docs.microsoft.com/en-us/learn/certifications/azure-ai-fundamentals/)
     """)
-    st.image("/workspaces/octo-dashboard/data/azure-ai-fundamentals-600x600.png", width=300)
+    # st.image("/workspaces/octo-dashboard/data/azure-ai-fundamentals-600x600.png", width=300)
     
     st.markdown("""
     ### Google Data Analytics Professional Certificate
     This certification enables you to gain job-ready skills that are in demand, like how to analyze and process data to gain key business insights. Topics covered include data cleaning, data analysis, data visualization, SQL, R programming, and developing a data-driven mindset. [Learn more](https://www.coursera.org/professional-certificates/google-data-analytics)
     """)
-    st.image("/workspaces/octo-dashboard/data/google.png", width=300)
+   # st.image("/workspaces/octo-dashboard/data/google.png", width=300)
 
     st.markdown("""
     ### Coursera: Machine Learning Specialization, University of Washington, USA
@@ -211,7 +216,7 @@ def display_certifications():
     ### AWS Certified Data Engineer (In Progress)
     This certification demonstrates expertise in data lakes and analytics services in the AWS ecosystem. It includes understanding the lifecycle of data, ingestion, storage, processing, and visualization, and working with AWS services like AWS Glue, Amazon Redshift, and Amazon Quicksight. [Learn more](https://aws.amazon.com/certification/certified-data-analytics-specialty/)
     """)
-    st.image("data/Screenshot 2024-07-29 at 7.40.19 AM.png", width=300)
+   # st.image("data/Screenshot 2024-07-29 at 7.40.19 AM.png", width=300)
 
 
 # Fonction pour afficher le profil
