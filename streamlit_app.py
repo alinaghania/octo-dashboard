@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import folium
-from streamlit.components.v1 import html
-import os
+from streamlit_folium import folium_static
 
 # Configuration de l'apparence de Streamlit avec un fond noir
 st.markdown(
@@ -34,7 +33,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 
 # Fonction pour afficher le tableau de bord principal
 def display_dashboard():
@@ -108,17 +106,7 @@ def display_dashboard():
         st.pyplot(fig3)
         plt.close(fig3)
 
-    # Quatrième graphique: Répartition par genre dans les différents secteurs (barres empilées)
-    with col2:
-        fig4, ax4 = plt.subplots(figsize=(8, 5))
-        ax4.bar(gender_sector_df["Sector"], gender_sector_df["Women"], label='Women', color='#ff9999')
-        ax4.bar(gender_sector_df["Sector"], gender_sector_df["Men"], bottom=gender_sector_df["Women"], label='Men', color='#66b3ff')
-        plt.title('Gender Distribution Across Sectors')
-        plt.ylabel('Number of Employees')
-        plt.xlabel('Sectors')
-        plt.legend()
-        st.pyplot(fig4)
-        plt.close(fig4)
+
 
     # Cinquième graphique: Salaires moyens par secteur
     with col1:
@@ -150,6 +138,110 @@ def display_dashboard():
     st.pyplot(fig7)
     plt.close(fig7)
 
+    # Nouveau graphique: Chiffre d'affaires et bénéfice net au fil du temps
+    st.subheader('Revenue and Net Income Over Time')
+    revenue_data = {
+        "Year": [2018, 2019, 2020, 2021, 2022],
+        "Revenue": [100, 110, 120, 128.3, 135],
+        "Net Income": [7, 8, 8.5, 9.3, 10]
+    }
+    revenue_df = pd.DataFrame(revenue_data)
+    fig8, ax8 = plt.subplots(figsize=(10, 5))
+    ax8.plot(revenue_df['Year'], revenue_df['Revenue'], marker='o', label='Revenue')
+    ax8.plot(revenue_df['Year'], revenue_df['Net Income'], marker='o', label='Net Income')
+    plt.title('Revenue and Net Income Over Time')
+    plt.xlabel('Year')
+    plt.ylabel('Amount (€ millions)')
+    plt.legend()
+    st.pyplot(fig8)
+    plt.close(fig8)
+
+    # Nouveau graphique: Répartition des employés par département
+    st.subheader('Employee Distribution by Department')
+    employee_distribution = {
+        "Department": ["IT Services", "Software Development", "Digital Transformation"],
+        "Employees": [150, 100, 110]
+    }
+    employee_distribution_df = pd.DataFrame(employee_distribution)
+    fig9, ax9 = plt.subplots(figsize=(10, 5))
+    ax9.bar(employee_distribution_df['Department'], employee_distribution_df['Employees'], color=['#ff9999','#66b3ff','#99ff99'])
+    plt.title('Employee Distribution by Department')
+    plt.xlabel('Department')
+    plt.ylabel('Number of Employees')
+    st.pyplot(fig9)
+    plt.close(fig9)
+
+    # Nouveau graphique: Répartition par genre dans les départements
+    st.subheader('Gender Distribution by Department')
+    gender_department_data = {
+        "Department": ["IT Services", "Software Development", "Digital Transformation"],
+        "Women": [50, 30, 40],
+        "Men": [100, 70, 70]
+    }
+    gender_department_df = pd.DataFrame(gender_department_data)
+    fig10, ax10 = plt.subplots(figsize=(10, 5))
+    ax10.bar(gender_department_df['Department'], gender_department_df['Women'], label='Women', color='#ff9999')
+    ax10.bar(gender_department_df['Department'], gender_department_df['Men'], bottom=gender_department_df['Women'], label='Men', color='#66b3ff')
+    plt.title('Gender Distribution by Department')
+    plt.xlabel('Department')
+    plt.ylabel('Number of Employees')
+    plt.legend()
+    st.pyplot(fig10)
+    plt.close(fig10)
+
+    # Nouveau graphique: Salaires moyens par département
+    st.subheader('Average Salary by Department')
+    salary_department_data = {
+        "Department": ["IT Services", "Software Development", "Digital Transformation"],
+         "Average Salary": [60000, 65000, 70000]
+    }
+    salary_department_df = pd.DataFrame(salary_department_data)
+    fig11, ax11 = plt.subplots(figsize=(10, 5))
+    ax11.bar(salary_department_df['Department'], salary_department_df['Average Salary'], color=['#ff9999','#66b3ff','#99ff99'])
+    plt.title('Average Salary by Department')
+    plt.xlabel('Department')
+    plt.ylabel('Average Salary (€)')
+    st.pyplot(fig11)
+    plt.close(fig11)
+
+    # Nouveau graphique: Années d'expérience moyennes par département
+    st.subheader('Years of Experience by Department')
+    experience_department_data = {
+        "Department": ["IT Services", "Software Development", "Digital Transformation"],
+        "Average Years of Experience": [5, 6, 7]
+    }
+    experience_department_df = pd.DataFrame(experience_department_data)
+    fig12, ax12 = plt.subplots(figsize=(10, 5))
+    ax12.bar(experience_department_df['Department'], experience_department_df['Average Years of Experience'], color=['#ff9999','#66b3ff','#99ff99'])
+    plt.title('Years of Experience by Department')
+    plt.xlabel('Department')
+    plt.ylabel('Average Years of Experience')
+    st.pyplot(fig12)
+    plt.close(fig12)
+
+    # Nouveau graphique: Scores de diversité et d'inclusion
+    st.subheader('Diversity and Inclusion Scores')
+    diversity_scores_data = {
+        "Metric": ["Diversity, Equity & Inclusion", "Economic Impact", "Civic Engagement & Giving", "Supply Chain Management"],
+        "Score": [4.8, 4.5, 3.6, 1.4]
+    }
+    diversity_scores_df = pd.DataFrame(diversity_scores_data)
+    fig13, ax13 = plt.subplots(figsize=(10, 5))
+    ax13.bar(diversity_scores_df['Metric'], diversity_scores_df['Score'], color='#66b3ff')
+    plt.title('Diversity and Inclusion Scores')
+    plt.xlabel('Metric')
+    plt.ylabel('Score')
+    st.pyplot(fig13)
+    plt.close(fig13)
+
+     # Ajouter la section des sources à la fin de la page OCTO
+    st.subheader('Sources')
+    st.markdown("""
+    - [PitchBook](https://pitchbook.com/)
+    - [Craft.co](https://craft.co/)
+    - [OCTO Technology Official Website](https://www.octo.com/)
+    - [B Lab Global](https://bcorporation.net/)
+    """)
 
 # Locations of OCTO Technology offices
 def display_locations():
@@ -189,11 +281,7 @@ def display_certifications():
     ### Microsoft Azure Fundamentals AZ900
     This certification demonstrates foundational level knowledge of cloud services and how those services are provided with Microsoft Azure. It covers general cloud computing concepts as well as services such as Azure subscriptions, planning and management, and Azure pricing and support. [Learn more](https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/)
     """)
-    image = "/workspaces/octo-dashboard/AZ900.png"
-    if os.path.exists(image):
-     st.image("/workspaces/octo-dashboard/AZ900.png", width=300)
-    else:
-     st.error(f"Profile image not found: {image}")
+    # st.image("/workspaces/octo-dashboard/AZ900.png", width=300)
     
     st.markdown("""
     ### Microsoft Azure AI Fundamentals AI900
@@ -224,7 +312,7 @@ def display_profile():
     st.title("Profile")
     
     # Display the image
-    st.image("/workspaces/octo-dashboard/data/IMG_4333.JPG", width=300)
+   # st.image("/workspaces/octo-dashboard/data/IMG_4333.JPG", width=300)
     st.markdown("""
     ## Sabine Dawaliby
 
