@@ -188,7 +188,7 @@ def display_certifications():
     ### Microsoft Azure Fundamentals AZ900
     This certification demonstrates foundational level knowledge of cloud services and how those services are provided with Microsoft Azure. It covers general cloud computing concepts as well as services such as Azure subscriptions, planning and management, and Azure pricing and support. [Learn more](https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/)
     """)
-    st.image("/workspaces/octo-dashboard/data/AZ900.png", width=300)
+    st.image("/workspaces/octo-dashboard/AZ900.png", width=300)
     
     st.markdown("""
     ### Microsoft Azure AI Fundamentals AI900
