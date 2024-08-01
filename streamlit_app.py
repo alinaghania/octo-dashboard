@@ -2,7 +2,18 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import folium
+from pathlib import Path
 from streamlit_folium import folium_static
+from PIL import Image
+
+### PATH ###
+CURRENT_PATH = Path().cwd()
+AZ900_PATH = CURRENT_PATH / "data" / "AZ900.png"
+AI900_PATH = CURRENT_PATH / "data" / "AI900.png"
+GOOGLE_PATH = CURRENT_PATH / "data" / "google.png"
+PROLFIL_PATH = CURRENT_PATH / "data" / "profil_img.jpg"
+AWS_CERTIF = CURRENT_PATH / "data" / "profil_img.jpg"
+
 
 # Configuration de l'apparence de Streamlit avec un fond noir
 st.markdown(
@@ -277,104 +288,119 @@ def display_locations():
 def display_certifications():
     st.title("Certifications")
 
-    st.markdown("""
-    ### Microsoft Azure Fundamentals AZ900
-    This certification demonstrates foundational level knowledge of cloud services and how those services are provided with Microsoft Azure. It covers general cloud computing concepts as well as services such as Azure subscriptions, planning and management, and Azure pricing and support. [Learn more](https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/)
-    """)
-    st.image("/workspaces/octo-dashboard/AZ900.png", width=300)
-    
-    st.markdown("""
-    ### Microsoft Azure AI Fundamentals AI900
-    This certification is an opportunity to demonstrate knowledge of common AI and machine learning workloads and how to implement them on Azure. It covers AI considerations, fundamental principles of machine learning on Azure, and features of computer vision workloads on Azure. [Learn more](https://docs.microsoft.com/en-us/learn/certifications/azure-ai-fundamentals/)
-    """)
-    st.image("/workspaces/octo-dashboard/data/azure-ai-fundamentals-600x600.png", width=300)
-    
-    st.markdown("""
-    ### Google Data Analytics Professional Certificate
-    This certification enables you to gain job-ready skills that are in demand, like how to analyze and process data to gain key business insights. Topics covered include data cleaning, data analysis, data visualization, SQL, R programming, and developing a data-driven mindset. [Learn more](https://www.coursera.org/professional-certificates/google-data-analytics)
-    """)
-    st.image("/workspaces/octo-dashboard/data/google.png", width=300)
+    with st.expander("Microsoft Azure Fundamentals AZ900"):
+        st.image(str(AZ900_PATH), width=300)
+        st.markdown("""
+        This certification demonstrates foundational level knowledge of cloud services and how those services are provided with Microsoft Azure. It covers general cloud computing concepts as well as services such as Azure subscriptions, planning and management, and Azure pricing and support. [Learn more](https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/)
+        """)
 
-    st.markdown("""
-    ### Coursera: Machine Learning Specialization, University of Washington, USA
-    This specialization provides a broad introduction to modern machine learning, including supervised learning (multiple linear regression, logistic regression, neural networks, support vector machines), unsupervised learning (clustering, dimensionality reduction, recommender systems), and best practices in machine learning (bias/variance theory, innovation process in machine learning and AI). [Learn more](https://www.coursera.org/specializations/machine-learning)
-    """)
-    
-    st.markdown("""
-    ### AWS Certified Data Engineer (In Progress)
-    This certification demonstrates expertise in data lakes and analytics services in the AWS ecosystem. It includes understanding the lifecycle of data, ingestion, storage, processing, and visualization, and working with AWS services like AWS Glue, Amazon Redshift, and Amazon Quicksight. [Learn more](https://aws.amazon.com/certification/certified-data-analytics-specialty/)
-    """)
-    st.image("data/Screenshot 2024-07-29 at 7.40.19 AM.png", width=300)
+    with st.expander("Microsoft Azure AI Fundamentals AI900"):
+        st.image(str(AI900_PATH), width=300)
+        st.markdown("""
+        This certification is an opportunity to demonstrate knowledge of common AI and machine learning workloads and how to implement them on Azure. It covers AI considerations, fundamental principles of machine learning on Azure, and features of computer vision workloads on Azure. [Learn more](https://docs.microsoft.com/en-us/learn/certifications/azure-ai-fundamentals/)
+        """)
 
+    with st.expander("Google Data Analytics Professional Certificate"):
+        st.image(str(GOOGLE_PATH), width=300)
+        st.markdown("""
+        This certification enables you to gain job-ready skills that are in demand, like how to analyze and process data to gain key business insights. Topics covered include data cleaning, data analysis, data visualization, SQL, R programming, and developing a data-driven mindset. [Learn more](https://www.coursera.org/professional-certificates/google-data-analytics)
+        """)
+
+    with st.expander("Coursera: Machine Learning Specialization, University of Washington, USA"):
+        st.markdown("""
+        This specialization provides a broad introduction to modern machine learning, including supervised learning (multiple linear regression, logistic regression, neural networks, support vector machines), unsupervised learning (clustering, dimensionality reduction, recommender systems), and best practices in machine learning (bias/variance theory, innovation process in machine learning and AI). [Learn more](https://www.coursera.org/specializations/machine-learning)
+        """)
+
+    with st.expander("AWS Certified Data Engineer (In Progress)"):
+        st.image(str(AWS_CERTIF), width=300)
+        st.markdown("""
+        This certification demonstrates expertise in data lakes and analytics services in the AWS ecosystem. It includes understanding the lifecycle of data, ingestion, storage, processing, and visualization, and working with AWS services like AWS Glue, Amazon Redshift, and Amazon Quicksight. [Learn more](https://aws.amazon.com/certification/certified-data-analytics-specialty/)
+        """)
 
 # Fonction pour afficher le profil
 def display_profile():
     st.title("Profile")
     
     # Display the image
-    st.image("/workspaces/octo-dashboard/data/IMG_4333.JPG", width=300)
+    st.image(str(PROLFIL_PATH), width=300)
     st.markdown("""
     ## Sabine Dawaliby
-
-    ### Education
-    - **Master Software Engineering**, EFREI Paris, Panthéon-Assas University, 2021-2024
-    - **Bachelor's Degree in Advanced Mathematics**, University of Poitiers, Faculty of Fundamental and Applied Sciences, 2019-2021
-    - **Specialization in Business Intelligence and Analytics**
-
-    ### Experience
-    - **Data Engineer/Data Analyst**, Société Générale, Paris (September 2022 - August 2024)
-        - Structuring and analyzing the data from the Group referential
-        - Deploying CI/CD pipelines and monitoring production deployments
-        - Districts of each datalake used by the Group
-
-    - **Mobile Developer**, Caplogy, Paris (September 2021 - August 2022)
-        - Developing applications using Flutter and Dart
-        - Creating multi-purpose digital interfaces
-
-    - **Cross-Functional Project**, Bouygues Telecom, Paris (September 2023 - January 2024)
-        - Modeling the data ontology as part of the development of the Data Market place of Bouygues Telecom
-        - Mapping and enriching their databases with web scraping (using openAI models to clean the data)
-
-    - **COVID-19 Referent**, CROUS, Paris (April 2020 - July 2020)
-        - Calling residents of the CROUS to ask and help people in need
-        - Connecting students in need to specialists and psychologists
-
-    ### Skills
-
-    #### Languages
-    - **French**: Fluent
-    - **English**: Fluent (TOEIC Score: 945)
-    - **Arabic**: Native language
-
-    #### Technical Skills
-    - **Programming Languages**: Python, R, Scala, Spark, Java, Dart/Flutter
-    - **Data Processing**: Hadoop (HDFS, Hive), Talend
-    - **Machine Learning & Data Analytics**: Pandas, NumPy, Scikit-Learn, PowerBI, Tableau
-    - **Databases**: SQL, Excel, Elastiksearch, MongoDB, Cassandra
-    - **Dev Tools**: Git, Docker, Jenkins
-    - **ETL Tools**: Talend
-
-    #### Soft Skills
-    - Leadership
-    - Decision making
-    - Effective communication
-    - Adaptability
-
-    ### Hobbies
-    - Photography
-    - Cultural exploration
-    - Painting/Drawing
-
-    ### Contact Information
-    - **Phone**: 07 79 56 62 89
-    - **LinkedIn**: [Sabine Dawaliby](https://www.linkedin.com/in/sabinedawaliby)
-    - **Email**: sabinedawaliby@gmail.com
-    - **Driver's license**: B
     """)
+
+    with st.expander("Education"):
+        st.markdown("""
+        ### Education
+        - **Master Software Engineering**, EFREI Paris, Panthéon-Assas University, 2021-2024
+        - **Bachelors Degree in Advanced Mathematics**, University of Poitiers, Faculty of Fundamental and Applied Sciences, 2019-2021
+        - **Specialization in Business Intelligence and Analytics**
+        """)
+
+    with st.expander("Experience"):
+        st.markdown("""
+        ### Experience
+        - **Data Engineer/Data Analyst**, Société Générale, Paris (September 2022 - August 2024)
+            - Structuring and analyzing the data from the Group referential
+            - Deploying CI/CD pipelines and monitoring production deployments
+            - Districts of each datalake used by the Group
+
+        - **Mobile Developer**, Caplogy, Paris (September 2021 - August 2022)
+            - Developing applications using Flutter and Dart
+            - Creating multi-purpose digital interfaces
+
+        - **Cross-Functional Project**, Bouygues Telecom, Paris (September 2023 - January 2024)
+            - Modeling the data ontology as part of the development of the Data Market place of Bouygues Telecom
+            - Mapping and enriching their databases with web scraping (using openAI models to clean the data)
+
+        - **COVID-19 Referent**, CROUS, Paris (April 2020 - July 2020)
+            - Calling residents of the CROUS to ask and help people in need
+            - Connecting students in need to specialists and psychologists
+        """)
+
+    with st.expander("Skills"):
+        st.markdown("""
+        ### Skills
+
+        #### Languages
+        - **French**: Fluent
+        - **English**: Fluent (TOEIC Score: 945)
+        - **Arabic**: Native language
+
+        #### Technical Skills
+        - **Programming Languages**: Python, R, Scala, Spark, Java, Dart/Flutter
+        - **Data Processing**: Hadoop (HDFS, Hive), Talend
+        - **Machine Learning & Data Analytics**: Pandas, NumPy, Scikit-Learn, PowerBI, Tableau
+        - **Databases**: SQL, Excel, Elastiksearch, MongoDB, Cassandra
+        - **Dev Tools**: Git, Docker, Jenkins
+        - **ETL Tools**: Talend
+
+        #### Soft Skills
+        - Leadership
+        - Decision making
+        - Effective communication
+        - Adaptability
+        """)
+
+    with st.expander("Hobbies"):
+        st.markdown("""
+        ### Hobbies
+        - Photography
+        - Cultural exploration
+        - Painting/Drawing
+        """)
+
+    with st.expander("Contact Information"):
+        st.markdown("""
+        ### Contact Information
+        - **Phone**: 07 79 56 62 89
+        - **LinkedIn**: [Sabine Dawaliby](https://www.linkedin.com/in/sabinedawaliby)
+        - **Email**: sabinedawaliby@gmail.com
+        - **Driver's license**: B
+        """)
+
 # Create a Streamlit app with navigation
 page = st.selectbox(
     "Navigation",
-    ["OCTO", "Locations", "Certifications", "Profile"]
+    ["Profile","OCTO", "Locations", "Certifications"]
 )
 
 # Call the appropriate function based on the selected page
@@ -387,3 +413,26 @@ elif page == "Certifications":
 elif page == "Profile":
     display_profile()
 
+st.markdown(
+    """
+    <style>
+    .side-image {
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 25%;
+        height: auto;
+        opacity: 0.95;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Display the side image
+st.markdown(
+    """
+    <img src="https://img.freepik.com/vecteurs-premium/stylo-plume-or-fer_105895-332.jpg" class="side-image">
+    """,
+    unsafe_allow_html=True
+)
