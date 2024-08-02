@@ -3,3 +3,7 @@ matplotlib
 folium
 streamlit_folium
 pillow
+whisper
+logging
+os
+tempfile
