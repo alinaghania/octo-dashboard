@@ -18,7 +18,7 @@ AZ900_PATH = CURRENT_PATH / "data" / "AZ900.png"
 AI900_PATH = CURRENT_PATH / "data" / "AI900.png"
 GOOGLE_PATH = CURRENT_PATH / "data" / "google.png"
 PROLFIL_PATH = CURRENT_PATH / "data" / "profil_img.jpg"
-AWS_CERTIF = CURRENT_PATH / "data" / "profil_img.jpg"
+AWS_CERTIF = CURRENT_PATH / "data" / "aws_certif.png"
 
 
 # Configuration de l'apparence de Streamlit avec un fond noir
