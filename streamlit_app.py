@@ -6,6 +6,11 @@ from pathlib import Path
 from streamlit_folium import folium_static
 from PIL import Image
 import whisper
+import logging
+import os
+import tempfile
+
+
 
 ### PATH ###
 CURRENT_PATH = Path().cwd()
@@ -398,28 +403,39 @@ def display_profile():
         - **Driver's license**: B
         """)
 
+# Function to display the Whisper App page
 def display_whisperapp():
-   st.title("Whisper App")
+    st.title("Whisper App")
 
-#upload audio file with streamlit
-audio_file = st.file_uploader("Upload an audio file", type=["mp3", "wav", "m4a"])
+    # Upload audio file with Streamlit
+    audio_file = st.file_uploader("Upload an audio file", type=["mp3", "wav", "m4a"])
 
-model = whisper.load_model("base")
-st.text("whisper Model Loaded")
+    model = whisper.load_model("base")
+    st.text("Whisper model loaded")
 
-if st.sidebar.button("Transcribe Audio"):
-  if audio_file is not None:
-      st.sidebar.success("Transcribing Audio")
-      transcription = model.transcribe(audio_file.name) 
-      st.sidebar.success("Transcription Complete")
-      st.markdown(transcription["text"])
+    if st.sidebar.button("Transcribe Audio"):
+        if audio_file is not None:
+            st.sidebar.success("Transcribing audio...")
+            try:
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as temp_file:
+                    temp_file.write(audio_file.read())
+                    temp_filename = temp_file.name
 
-  else:
-      st.sidebar.error("Please upload an audio file")
+                transcription = model.transcribe(temp_filename)
+                st.sidebar.success("Transcription complete")
+                st.markdown(transcription["text"])
 
-st.sidebar.header("Play Original Audio File")
-st.audio(audio_file)
+                # Cleanup temporary file
+                os.remove(temp_filename)
+            except Exception as e:
+                logging.error(f"Error transcribing audio: {e}")
+                st.sidebar.error(f"Error: {e}")
+        else:
+            st.sidebar.error("Please upload an audio file")
 
+    if audio_file is not None:
+        st.sidebar.header("Play Original Audio File")
+        st.audio(audio_file)
 
 # Create a Streamlit app with navigation
 page = st.selectbox(
