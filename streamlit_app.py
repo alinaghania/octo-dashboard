@@ -402,6 +402,8 @@ def display_profile():
         - **Email**: sabinedawaliby@gmail.com
         - **Driver's license**: B
         """)
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Function to display the Whisper App page
 def display_whisperapp():
