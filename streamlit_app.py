@@ -9,6 +9,7 @@ import whisper
 import logging
 import os
 import tempfile
+import streamlit as st
 
 
 
@@ -19,6 +20,7 @@ AI900_PATH = CURRENT_PATH / "data" / "AI900.png"
 GOOGLE_PATH = CURRENT_PATH / "data" / "google.png"
 PROLFIL_PATH = CURRENT_PATH / "data" / "profil_img.jpg"
 AWS_CERTIF = CURRENT_PATH / "data" / "aws_certif.png"
+PBI = CURRENT_PATH / "data" / "PBI.png"
 
 
 # Configuration de l'apparence de Streamlit avec un fond noir
@@ -251,7 +253,12 @@ def display_dashboard():
     st.pyplot(fig13)
     plt.close(fig13)
 
-     # Ajouter la section des sources à la fin de la page OCTO
+    # Ajouter la section PowerBI de la page OCTO  
+    st.subheader('Intégration de PowerBI Dashboard')
+    st.image(str(PBI))
+
+
+    # Ajouter la section des sources à la fin de la page OCTO
     st.subheader('Sources')
     st.markdown("""
     - [PitchBook](https://pitchbook.com/)
