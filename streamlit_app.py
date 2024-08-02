@@ -5,6 +5,7 @@ import folium
 from pathlib import Path
 from streamlit_folium import folium_static
 from PIL import Image
+import whisper
 
 ### PATH ###
 CURRENT_PATH = Path().cwd()
@@ -397,10 +398,33 @@ def display_profile():
         - **Driver's license**: B
         """)
 
+def display_whisperapp():
+   st.title("Whisper App")
+
+#upload audio file with streamlit
+audio_file = st.file_uploader("Upload an audio file", type=["mp3", "wav", "m4a"])
+
+model = whisper.load_model("base")
+st.text("whisper Model Loaded")
+
+if st.sidebar.button("Transcribe Audio"):
+  if audio_file is not None:
+      st.sidebar.success("Transcribing Audio")
+      transcription = model.transcribe(audio_file.name) 
+      st.sidebar.success("Transcription Complete")
+      st.markdown(transcription["text"])
+
+  else:
+      st.sidebar.error("Please upload an audio file")
+
+st.sidebar.header("Play Original Audio File")
+st.audio(audio_file)
+
+
 # Create a Streamlit app with navigation
 page = st.selectbox(
     "Navigation",
-    ["Profile","OCTO", "Locations", "Certifications"]
+    ["Profile","OCTO", "Locations","Whisper App", "Certifications"]
 )
 
 # Call the appropriate function based on the selected page
@@ -408,10 +432,13 @@ if page == "OCTO":
     display_dashboard()
 elif page == "Locations":
     display_locations()
+elif page == "Whisper App":
+    display_whisperapp()
 elif page == "Certifications":
     display_certifications()
 elif page == "Profile":
     display_profile()
+
 
 st.markdown(
     """
@@ -436,3 +463,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
