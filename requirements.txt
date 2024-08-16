@@ -3,9 +3,4 @@ matplotlib
 folium
 streamlit_folium
 pillow
-torch==2.0.0
-torchvision==0.15.1
-torchaudio==2.0.0
-numpy==1.24.4
-git+https://github.com/openai/whisper.git
-ffmpeg-python
+numpy
