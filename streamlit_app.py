@@ -449,7 +449,7 @@ def display_whisperapp():
 # Create a Streamlit app with navigation
 page = st.selectbox(
     "Navigation",
-    ["Profile","OCTO", "Locations","Whisper App", "Certifications"]
+    ["Profile", "Certifications"]
 )
 
 # Call the appropriate function based on the selected page
