@@ -5,7 +5,7 @@ import folium
 from pathlib import Path
 from streamlit_folium import folium_static
 from PIL import Image
-import whisper
+
 import logging
 import os
 import tempfile
