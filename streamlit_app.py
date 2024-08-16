@@ -453,13 +453,13 @@ page = st.selectbox(
 )
 
 # Call the appropriate function based on the selected page
-if page == "OCTO":
-    display_dashboard()
-elif page == "Locations":
-    display_locations()
-elif page == "Whisper App":
-    display_whisperapp()
-elif page == "Certifications":
+#if page == "OCTO":
+ #   display_dashboard()
+#if page == "Locations":
+   # display_locations()
+#elif page == "Whisper App":
+   #display_whisperapp()
+if page == "Certifications":
     display_certifications()
 elif page == "Profile":
     display_profile()
